@@ -13,5 +13,18 @@ class UsersController < ApplicationController
     end
   end
 
-  
+  def destroy
+    @user = find_user
+    if @user
+      @user.destroy
+      head :no_content
+    else
+      render json: @user.errors, status: :not_found
+    end
+  end
+
+  private
+  def find-user
+    User.find(params[:id])
+  end
 end
