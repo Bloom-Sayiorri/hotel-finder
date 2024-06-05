@@ -15,7 +15,7 @@ const Navbar = () => {
         <p className="logo-header">Hotel Findr</p>
       </div>
       <nav className="nav">
-        <NavLink to='/' activeClassName="active" className="nav-links hover">Home</NavLink>
+        <NavLink to='/' activeclassname="active" className="nav-links hover">Home</NavLink>
         <NavLink to='/about' className="nav-links">About</NavLink>
         <NavLink to='/listings' className="nav-links">Listings</NavLink>
       </nav>
