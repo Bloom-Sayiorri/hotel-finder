@@ -16,6 +16,10 @@ const Form = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
+        const hotelData = {
+            name: name,
+            
+        }
     };
 
   return (
