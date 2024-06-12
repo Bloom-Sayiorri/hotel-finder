@@ -5,15 +5,9 @@ import Navbar from './components/Navbar';
 import Home from './pages/Home';
 import About from './pages/About';
 import Listings from './pages/Listings';
+import Footer from './components/Footer';
 
 function App() {
-  // const [ hotels, setHotels ] = useState([]);
-
-  // useEffect(() => {
-  //   fetch("/api/")
-  //   .then((r) => r.json())
-  //   .then((data) => console.log(data))
-  // }, [])
 
   return (
     <BrowserRouter>
@@ -23,6 +17,7 @@ function App() {
         <Route exact path='/about' element={<About />}/>
         <Route exact path='/listings' element={<Listings />} />
       </Routes>
+      <Footer />
     </BrowserRouter>
   );
 }

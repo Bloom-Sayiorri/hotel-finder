@@ -1,9 +1,13 @@
 import React, { useState } from 'react'
 
-const Form = () => {
+const Form = ({ onAddHotel }) => {
     const [ formData, setFormData ] = useState({
-        username: '',
-
+        name: '',
+        location: '',
+        image_url: '',
+        amenities: '',
+        ratings: 0,
+        listings: ''
     });
 
     const handleChange = (e) => {
@@ -17,9 +21,20 @@ const Form = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
         const hotelData = {
-            name: name,
-            
+            name: formData.name,
+            location: formData.location,
+            image_url: formData.image_url,
+            amenities: formData.amenities,
+            ratings: formData.ratings,
+            listings: parseInt(formData.listings, 10)
         }
+        fetch('/api/', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(hotelData)
+        })
+        .then((r) => r.json())
+        .then((newHotel) => onAddHotel(newHotel))
     };
 
   return (
@@ -32,6 +47,7 @@ const Form = () => {
             value={formData.username}
             onChange={handleChange}
         />
+
     </form>
   )
 }
