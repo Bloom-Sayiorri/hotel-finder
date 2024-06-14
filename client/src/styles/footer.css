@@ -1,0 +1,31 @@
+footer {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    bottom: 0;
+    line-height: 0%;
+    /* height: 10vh; */
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+}
+
+.rule {
+    margin-bottom: .5rem;
+    position: fixed;
+    right: 50%;
+    left: 50%;
+    height: 50%;
+    width: 5px;
+    background-color: black;
+}
+
+.socials {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
