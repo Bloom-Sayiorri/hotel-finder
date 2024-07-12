@@ -9,8 +9,6 @@ const Footer = () => {
         <p className='text'>All rights reserved.</p>
         <p className='text'><span style={{color: "blue"}}>&copy;</span> Hotel Findr</p>
       </div>
-      
-      <div className='rule'></div>
       <div className='socials'>
         <FaXTwitter className='twitter'/>
         <FaInstagram className='instagram'/>
