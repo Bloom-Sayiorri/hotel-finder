@@ -4,10 +4,11 @@ import { FaXTwitter, FaInstagram } from "react-icons/fa6";
 
 const Footer = () => {
   return (
-    <footer>
+    <footer className='footer'>
       <div className='container'>
-        <p className='text'>All rights reserved.</p>
-        <p className='text'><span style={{color: "blue"}}>&copy;</span> Hotel Findr</p>
+        <p className='text'>
+          <span style={{color: "blue"}}>&copy;</span> Hotel Findr All rights reserved.
+        </p>
       </div>
       <div className='socials'>
         <FaXTwitter className='twitter'/>
