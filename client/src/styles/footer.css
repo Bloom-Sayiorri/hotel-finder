@@ -1,20 +1,25 @@
-footer {
+/* footer {
     display: flex;
-    flex-direction: row;
     justify-content: center;
     align-items: center;
     gap: 5px;
+
     padding: 18px;
     width: 100%;
     position: fixed;
     bottom: 0;
-    /* line-height: 0%; */
-    /* height: 10vh; */
+    text-align: center;
 }
 
 .container {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.text {
+    display: inline-block;
 }
 
 .socials {
@@ -26,4 +31,30 @@ footer {
 
 .twitter:hover, .instagram:hover {
     color: rgb(81, 130, 255);
+} */
+
+footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: fixed;
+    bottom: 0;
+    padding: 10px;
+    width: 100%;
+    gap: 1em;
+    text-align: center;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.socials {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1em;
+    font-size: 1.2em;
 }

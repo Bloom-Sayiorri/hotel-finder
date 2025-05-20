@@ -6,9 +6,8 @@ const Footer = () => {
   return (
     <footer className='footer'>
       <div className='container'>
-        <p className='text'>
-          <span style={{color: "blue"}}>&copy;</span> Hotel Findr All rights reserved.
-        </p>
+        <p className='text'>Hotel Findr All rights reserved.</p>
+        <span style={{color: "blue", fontSize: "2em"}}>&copy;</span>
       </div>
       <div className='socials'>
         <FaXTwitter className='twitter'/>
