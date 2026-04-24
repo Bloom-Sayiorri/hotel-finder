@@ -1,25 +1,11 @@
 import React  from 'react'
+import Search from '../components/Search'
 
 const Home = () => {
 
-  // const [ hotels, setHotels ] = useState([]);
-
-  // useEffect(() => {
-  //   fetch("/api/")
-  //   .then((r) => r.json())
-  //   .then((data) => setHotels(data))
-  // }, [])
-
-  // const onAddHotel = (newHotel) => {
-  //   setHotels((hotels) => ({
-  //     ...hotels,
-  //     newHotel
-  //   }));
-  // };
-
   return (
     <div>
-      
+      <Search />
     </div>
   )
 }

@@ -1,14 +1,14 @@
 import React from 'react'
-import '../styles/about.css'
+import styles from '../styles/about.module.css'
 import room from '../assets/room.jpg'
 
 const About = () => {
   return (
-    <div className='container'>
-      <section className='img-section'>
+    <div className={styles.container}>
+      <section className={styles.imgSection}>
         <img src={room} alt="Room"/>
       </section>
-      <section className='text-section'>
+      <section className={styles.textSection}>
         <p>
           Welcome to Hotel Findr, where innovation meets excellence. Since our founding, we have been committed to providing top-notch services and solutions to our clients.
         </p>

@@ -12,11 +12,13 @@ function App() {
   return (
     <BrowserRouter>
     <Navbar />
+    <main className="App">
       <Routes>
         <Route exact path='/' element={<Home />}/>
-        <Route exact path='/about' element={<About />}/>
-        <Route exact path='/listings' element={<Listings />} />
+        <Route path='/about' element={<About />}/>
+        <Route path='/listings' element={<Listings />} />
       </Routes>
+    </main>
       <Footer />
     </BrowserRouter>
   );

@@ -1,0 +1,18 @@
+.logo {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 1rem;
+}
+
+.logoHeader {
+	font-size: 20px;
+	font-family: Papyrus, Brush Script, cursive;
+	
+}
+
+.img {
+	object-fit: contain;
+	height: 23px;
+	width: 23px;
+}

@@ -8,11 +8,11 @@
 }
 
 
-.text-section {
+.textSection {
     height: 50%;
     width: 50%;
 }
 
-.text-section p {
+.textSection p {
     float: left;
 }

@@ -47,8 +47,13 @@ footer {
 
 .container {
     display: flex;
+    gap: .3rem;
     justify-content: center;
     align-items: center;
+}
+
+.text {
+    font-size: 18px;
 }
 
 .socials {
