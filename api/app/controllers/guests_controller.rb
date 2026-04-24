@@ -1,51 +1,54 @@
 class GuestsController < ApplicationController
-  before_action :set_guest, only: %i[ show update destroy ]
+  rescue_from ActiveRecord::RecordNotFound, with: :render_not_found
+  rescue_from ActiveRecord::RecordInvalid, with: :render_unprocessable_entity
+  rescue_from ActiveRecord::RecordNotDestroyed, with: :render_not_destroyed
 
-  # GET /guests
   def index
-    @guests = Guest.all
-
-    render json: @guests
+    guests = Guest.all
+    render json: guests, status: :ok
   end
 
-  # GET /guests/1
   def show
-    render json: @guest
+    guest = find_guest
+    render json: guest, status: :ok
   end
 
-  # POST /guests
   def create
-    @guest = Guest.new(guest_params)
-
-    if @guest.save
-      render json: @guest, status: :created, location: @guest
-    else
-      render json: @guest.errors, status: :unprocessable_entity
-    end
+    guest = Guest.create!(guest_params)
+    render json: guest, status: :created
   end
 
-  # PATCH/PUT /guests/1
   def update
-    if @guest.update(guest_params)
-      render json: @guest
-    else
-      render json: @guest.errors, status: :unprocessable_entity
-    end
+    guest = find_guest
+    guest.update!
+    render json: guest, status: :ok
   end
 
-  # DELETE /guests/1
   def destroy
-    @guest.destroy!
+    guest = find_guest
+    guest.destroy!
+    head :no_content
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_guest
-      @guest = Guest.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def guest_params
-      params.require(:guest).permit(:username, :email, :password_digest)
-    end
+  def find_guest
+    Guest.find(params[:id])
+  end
+
+  def guest_params
+    params.require(:guest).permit(:username, :email, :password_digest)
+  end
+
+  def render_not_found
+    render json: { error: 'Guest not found' }, status: :not_found
+  end
+
+  def render_unprocessable_entity(invalid)
+    render json: { error: invalid.record.errorrs.full_messages }, status: :not_found
+  end
+
+  def render_not_destroyed(exception)
+    render json: { error: 'Guest not deleted', details: exception.record.error.full_messages }, status: :not_found
+  end
 end

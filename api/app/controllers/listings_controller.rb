@@ -1,51 +1,58 @@
 class ListingsController < ApplicationController
-  before_action :set_listing, only: %i[ show update destroy ]
+  skip_before_action :authorized, only: [:index]
+  rescue_from ActiveRecord::RecordNotFound, with: :render_not_found
+  rescue_from ActiveRecord::RecordInvalid, with: :render_unprocessable_entity
+  rescue_from ActiveRecord::RecordNotDestroyed, with: :render_not_destroyed
 
-  # GET /listings
   def index
-    @listings = Listing.all
-
-    render json: @listings
+    listings = Listing.all
+    render json: listings, status: :ok
   end
 
-  # GET /listings/1
   def show
-    render json: @listing
+    listing = find_listing
+    render json: listing, status: :ok
   end
 
-  # POST /listings
   def create
-    @listing = Listing.new(listing_params)
-
-    if @listing.save
-      render json: @listing, status: :created, location: @listing
-    else
-      render json: @listing.errors, status: :unprocessable_entity
-    end
+    listing = Listing.create!(listing_params)
+    render json: listing, status: :created
   end
 
-  # PATCH/PUT /listings/1
   def update
-    if @listing.update(listing_params)
-      render json: @listing
-    else
-      render json: @listing.errors, status: :unprocessable_entity
-    end
+    listing = find_listing
+    listing.update!(listing_params)
+    render json: listing, status: :ok
   end
 
-  # DELETE /listings/1
   def destroy
-    @listing.destroy!
+    listing = set_listing
+    listing.destroy!
+    head :no_content
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_listing
-      @listing = Listing.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def listing_params
-      params.require(:listing).permit(:category)
-    end
+  # def set_listing
+  #   Listing.find(params[:id])
+  # end
+  def set_listing
+    Listing.find_by(title: params[:title])
+  end
+
+  def listing_params
+    params.require(:listing).permit(:category)
+  end
+
+  def render_not_found
+    render json: { error: 'Listing not found' }, status: :not_found
+  end
+
+  def render_unprocessable_entity(invalid)
+    render json: { error: invalid.record.errorrs.full_messages }, status: :not_found
+  end
+
+  def render_not_destroyed(exception)
+    render json: { error: 'Listing not deleted', details: exception.record.error.full_messages }, status: :not_found
+  end
 end
